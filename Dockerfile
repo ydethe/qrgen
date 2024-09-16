@@ -1,3 +1,5 @@
+# sudo docker build -t ydethe/qrgen:latest .
+# sudo docker push ydethe/qrgen:latest
 FROM python:3.10-alpine
 
 ARG SECRET_KEY

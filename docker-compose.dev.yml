@@ -1,7 +1,6 @@
 services:
   web:
-    image: ydethe/qrgen:latest
-    restart: unless-stopped
+    build: .
     environment:
       - SERVER_URL=https://$HOST
       - SECRET_KEY=$SECRET_KEY
