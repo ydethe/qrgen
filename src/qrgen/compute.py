@@ -1,10 +1,10 @@
-from flask import render_template
-from flask import Flask
+from flask import render_template, Flask, send_file
 from flask_bootstrap import Bootstrap
 from flask_wtf import FlaskForm
 from wtforms import StringField
 from wtforms.validators import DataRequired
 from wtforms.fields import SubmitField
+import qrcode
 
 
 class MyForm(FlaskForm):
@@ -32,8 +32,17 @@ def create_app(test_config=None):
     def index():
         form = MyForm()
         if form.validate_on_submit():
-            # return redirect('/success')
-            print(form.url)
+            qr = qrcode.QRCode(
+                version=1,
+                error_correction=qrcode.constants.ERROR_CORRECT_Q,
+                box_size=30,
+                border=4,
+            )
+            qr.add_data(form.url.data)
+            img = qr.make_image(fill_color="black", back_color="white")
+            img.save("src/qrgen/qrcode.png")
+            print("generated")
+            return send_file("qrcode.png", mimetype="image/png")
         return render_template("index.html", form=form)
 
     return app

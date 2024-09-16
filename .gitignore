@@ -1,6 +1,7 @@
 htmldoc
 test_results.xml
 .pdm-python
+*.png
 
 *.db
 __pypackages__
