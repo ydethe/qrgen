@@ -5,7 +5,7 @@
 groups = ["default", "dev", "doc", "maintain", "quality", "test"]
 strategy = ["inherit_metadata"]
 lock_version = "4.5.0"
-content_hash = "sha256:09f4112ab050a0be62d09164886e62114a372728d5be33363c9c66dde15d9768"
+content_hash = "sha256:77756826942828f3f2c145c49fd2453e61624fffe9423187b690ce40a96ea8ae"
 
 [[metadata.targets]]
 requires_python = ">=3.9,<3.13"
@@ -948,7 +948,7 @@ name = "pillow"
 version = "10.4.0"
 requires_python = ">=3.8"
 summary = "Python Imaging Library (Fork)"
-groups = ["doc"]
+groups = ["default", "doc"]
 files = [
     {file = "pillow-10.4.0-cp310-cp310-macosx_10_10_x86_64.whl", hash = "sha256:4d9667937cfa347525b319ae34375c37b9ee6b525440f3ef48542fcf66f2731e"},
     {file = "pillow-10.4.0-cp310-cp310-macosx_11_0_arm64.whl", hash = "sha256:543f3dc61c18dafb755773efc89aae60d06b6596a63914107f75459cf984164d"},
