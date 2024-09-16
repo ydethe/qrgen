@@ -1,6 +1,7 @@
+import io
 import os
-from pathlib import Path
 
+from PIL import Image
 from flask import render_template, Flask, send_file
 from flask_bootstrap import Bootstrap
 from flask_wtf import FlaskForm
@@ -23,7 +24,6 @@ def create_app():
     app.config.from_mapping(
         SECRET_KEY=os.environ.get("SECRET_KEY", "dev"),
     )
-    gendir = Path(os.environ.get("GENDIR", ".")).resolve()
 
     # index page
     @app.route("/", methods=("GET", "POST"))
@@ -39,9 +39,13 @@ def create_app():
             qr.add_data(form.url.data)
             qr.make(fit=False)
             img = qr.make_image(fill_color="black", back_color="white")
-            img.save(gendir / "qrcode.png")
-            print(gendir / "qrcode.png")
-            return send_file(gendir / "qrcode.png", mimetype="image/png")
+            fp = io.BytesIO()
+            format = Image.registered_extensions()[".png"]
+            img.save(fp, format)
+            fp.seek(0)
+            return send_file(
+                fp, mimetype="image/png", as_attachment=True, download_name="qrcode.png"
+            )
 
         return render_template("index.html", form=form)
 
