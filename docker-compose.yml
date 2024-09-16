@@ -1,0 +1,17 @@
+services:
+  web:
+    build: .
+    environment:
+      - SERVER_URL=https://$HOST
+      - SECRET_KEY=$SECRET_KEY
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.$COMPOSE_PROJECT_NAME.rule=Host(`$HOST`)"
+      - "traefik.http.routers.$COMPOSE_PROJECT_NAME.entrypoints=websecure"
+      - "traefik.http.routers.$COMPOSE_PROJECT_NAME.tls.certresolver=letsencrypt"
+      - "traefik.http.services.$COMPOSE_PROJECT_NAME.loadbalancer.server.port=3566"
+
+networks:
+  default:
+    external: true
+    name: $TRAEFIK_NETWORK

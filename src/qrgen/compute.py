@@ -1,3 +1,5 @@
+import os
+
 from flask import render_template, Flask, send_file
 from flask_bootstrap import Bootstrap
 from flask_wtf import FlaskForm
@@ -12,20 +14,13 @@ class MyForm(FlaskForm):
     submit = SubmitField("Générer")
 
 
-def create_app(test_config=None):
+def create_app():
     # create and configure the app
     app = Flask(__name__, instance_relative_config=True)
     Bootstrap(app)
     app.config.from_mapping(
-        SECRET_KEY="dev",
+        SECRET_KEY=os.environ.get("SECRET_KEY", "dev"),
     )
-
-    if test_config is None:
-        # load the instance config, if it exists, when not testing
-        app.config.from_pyfile("config.py", silent=True)
-    else:
-        # load the test config if passed in
-        app.config.from_mapping(test_config)
 
     # index page
     @app.route("/", methods=("GET", "POST"))
@@ -40,9 +35,9 @@ def create_app(test_config=None):
             )
             qr.add_data(form.url.data)
             img = qr.make_image(fill_color="black", back_color="white")
-            img.save("src/qrgen/qrcode.png")
-            print("generated")
-            return send_file("qrcode.png", mimetype="image/png")
+            img.save("/code/qrcode.png")
+            return send_file("/code/qrcode.png", mimetype="image/png")
+
         return render_template("index.html", form=form)
 
     return app
