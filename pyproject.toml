@@ -15,8 +15,12 @@ authors = [
     { name = "Yann de Thé", email = "ydethe@gmail.com" },
 ]
 dependencies = [
-    "numpy~=1.26.4",
-    "rich~=13.7.1"
+    "rich~=13.7.1",
+    "qrcode~=7.4",
+    "flask~=3.0",
+    "waitress~=3.0",
+    "Flask-WTF~=1.2",
+    "flask-bootstrap~=3.3",
 ]
 requires-python = ">=3.9,<3.13"
 readme = "README.md"
@@ -44,7 +48,7 @@ addopts = [
     "--cov-config=tests/coverage.conf",
     "--cov=qrgen",
     "--doctest-modules",
-    
+
 ]
 testpaths = [
     "tests/",
@@ -77,7 +81,7 @@ dev = [
     "ipython~=7.23.1",
     "pre-commit",
     "snakeviz>=2.1.2",
-    
+
 ]
 maintain = [
     "black==22.3.0",
@@ -102,7 +106,7 @@ test = [
     "pytest-picked~=0.4.6",
     "pytest-sugar~=0.9.5",
     "pytest-html~=3.1.1",
-    
+
 ]
 
 [tool.pdm.scripts]
