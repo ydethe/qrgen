@@ -2,7 +2,6 @@ services:
   web:
     build: .
     environment:
-      - SERVER_URL=https://$HOST
       - SECRET_KEY=$SECRET_KEY
     labels:
       - "traefik.enable=true"
