@@ -1,0 +1,18 @@
+# Changes here will be overwritten by Copier
+_commit: v0.1.8
+_src_path: gh:ydethe/pdm_template.git
+author_email: ydethe@gmail.com
+author_name: Yann de Thé
+copyright_date: '2024'
+copyright_license: MIT License
+is_c_extension: false
+is_obfuscated: false
+max_python_version: '3.13'
+min_python_version: '3.9'
+project_description: A webapp to generate QR codes
+project_name: qrgen
+python_package_import_name: qrgen
+repository_name: qrgen
+repository_namespace: ydethe
+repository_provider: https://github.com/
+use_pytest_mpl: false
