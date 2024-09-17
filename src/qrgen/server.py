@@ -10,7 +10,7 @@ from wtforms.validators import DataRequired
 from wtforms.fields import SubmitField
 import qrcode
 
-from . import settings
+from . import settings, logger
 
 
 class MyForm(FlaskForm):
@@ -33,13 +33,18 @@ def create_app():
     def index():
         form = MyForm()
         if form.validate_on_submit():
+            code_data = form.url.data
+            code_size = int(form.size.data)
+
+            logger.info(f"Generating code for '{code_data}")
+
             qr = qrcode.QRCode(
-                version=int(form.size.data),
+                version=code_size,
                 error_correction=qrcode.constants.ERROR_CORRECT_Q,
                 box_size=10,
                 border=4,
             )
-            qr.add_data(form.url.data)
+            qr.add_data(code_data)
             qr.make(fit=False)
             img = qr.make_image(fill_color="black", back_color="white")
             fp = io.BytesIO()

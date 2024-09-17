@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 
+- Fixed docker ([86ddd0f](https://github.com/ydethe/qrgen/commit/86ddd0ff6e1e6feeea223220073abb74be62ef5b) by Yann de The).
 - Fixed QR generation ([1d4892c](https://github.com/ydethe/qrgen/commit/1d4892c8e5abf5b83dd9aba73badbef9218ea51c) by Yann de The).
 
 <!-- insertion marker -->

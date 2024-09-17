@@ -38,10 +38,6 @@ class Settings(BaseSettings):
 
 settings = Settings()
 
-# création de l'objet logger qui va nous servir à écrire dans les logs
-logger = logging.getLogger("qrgen_logger")
-logger.setLevel(settings.loglevel.upper())
-
 logfire.configure(token=settings.logfire_token)
 
 # création de l'objet logger qui va nous servir à écrire dans les logs
