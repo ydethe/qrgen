@@ -12,7 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
-- Added logo ([d4e4181](https://github.com/ydethe/qrgen/commit/d4e41815d0dbf55402f396af9932bfe624aebf52) by Yann de The).
+- Added logo ([0671582](https://github.com/ydethe/qrgen/commit/067158228e74ba4e337b804a5fb026350a8f808d) by Yann de The).
 - Added png download ([e13f274](https://github.com/ydethe/qrgen/commit/e13f2741d25ee0395e8892730ae089c70d3842cd) by Yann de The).
 
 ### Fixed

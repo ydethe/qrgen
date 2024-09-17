@@ -1,6 +1,6 @@
 import io
-import os
 
+import logfire
 from PIL import Image
 from flask import render_template, Flask, send_file
 from flask_bootstrap import Bootstrap
@@ -9,6 +9,8 @@ from wtforms import StringField, IntegerField
 from wtforms.validators import DataRequired
 from wtforms.fields import SubmitField
 import qrcode
+
+from . import settings
 
 
 class MyForm(FlaskForm):
@@ -21,11 +23,12 @@ def create_app():
     # create and configure the app
     app = Flask(__name__, instance_relative_config=True)
     Bootstrap(app)
+    logfire.instrument_flask(app)
     app.config.from_mapping(
-        SECRET_KEY=os.environ.get("SECRET_KEY", "dev"),
+        SECRET_KEY=settings.secret_key,
     )
 
-    # index page
+    # Index page
     @app.route("/", methods=("GET", "POST"))
     def index():
         form = MyForm()
