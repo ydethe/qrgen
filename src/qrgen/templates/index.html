@@ -4,5 +4,10 @@
 {% block title %}QR code generator{% endblock %}
 
 {% block content %}
+<h1>QR code generator</h1>
+<div class="container">
 {{wtf.quick_form(form, novalidate=True)}}
+<br>
+<a href="https://logfire.pydantic.dev/ydethe/qrgen/" target="_blank" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Logfire</a>
+</div>
 {% endblock %}

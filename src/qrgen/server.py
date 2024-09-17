@@ -14,8 +14,8 @@ from . import settings, logger
 
 
 class MyForm(FlaskForm):
-    url = StringField("url", validators=[DataRequired()])
-    size = IntegerField("size", default=10, validators=[DataRequired()])
+    url = StringField("Donnée du QR code", validators=[DataRequired()])
+    size = IntegerField("Taille", default=10, validators=[DataRequired()])
     submit = SubmitField("Générer")
 
 
