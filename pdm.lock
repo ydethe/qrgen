@@ -5,7 +5,7 @@
 groups = ["default", "dev", "doc", "maintain", "quality", "test"]
 strategy = ["inherit_metadata"]
 lock_version = "4.5.0"
-content_hash = "sha256:fba8c7c909cad4d169e6fb840d0bb7a69927754d2e19195b95df19a1236a844d"
+content_hash = "sha256:eabc7f887f61aaeddf24c295d91ce649f1018590f44284868ed4c5baec7e8880"
 
 [[metadata.targets]]
 requires_python = ">=3.9,<3.13"
@@ -1691,6 +1691,22 @@ dependencies = [
     "colorama; platform_system == \"Windows\"",
     "pypng",
     "typing-extensions",
+]
+files = [
+    {file = "qrcode-7.4.2-py3-none-any.whl", hash = "sha256:581dca7a029bcb2deef5d01068e39093e80ef00b4a61098a2182eac59d01643a"},
+    {file = "qrcode-7.4.2.tar.gz", hash = "sha256:9dd969454827e127dbd93696b20747239e6d540e082937c90f14ac95b30f5845"},
+]
+
+[[package]]
+name = "qrcode"
+version = "7.4.2"
+extras = ["pil"]
+requires_python = ">=3.7"
+summary = "QR Code image generator"
+groups = ["default"]
+dependencies = [
+    "pillow>=9.1.0",
+    "qrcode==7.4.2",
 ]
 files = [
     {file = "qrcode-7.4.2-py3-none-any.whl", hash = "sha256:581dca7a029bcb2deef5d01068e39093e80ef00b4a61098a2182eac59d01643a"},

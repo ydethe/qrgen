@@ -16,7 +16,7 @@ authors = [
 ]
 dependencies = [
     "rich~=13.7.1",
-    "qrcode~=7.4",
+    "qrcode[pil]~=7.4",
     "flask~=3.0",
     "waitress~=3.0",
     "Flask-WTF~=1.2",
