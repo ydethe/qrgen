@@ -19,13 +19,7 @@ from qrcode.image.styles.moduledrawers.pil import (
     SquareModuleDrawer,
     VerticalBarsDrawer,
 )
-from qrcode.image.styles.colormasks import (
-    RadialGradiantColorMask,
-    HorizontalGradiantColorMask,
-    SolidFillColorMask,
-    SquareGradiantColorMask,
-    VerticalGradiantColorMask,
-)
+from qrcode.image.styles.colormasks import SolidFillColorMask
 
 from . import settings, logger
 
@@ -37,13 +31,6 @@ style_choices = {
     "GappedSquareModuleDrawer": GappedSquareModuleDrawer,
     "HorizontalBarsDrawer": HorizontalBarsDrawer,
     "VerticalBarsDrawer": VerticalBarsDrawer,
-}
-color_choices = {
-    "SolidFillColorMask": SolidFillColorMask,
-    "RadialGradiantColorMask": RadialGradiantColorMask,
-    "SquareGradiantColorMask": SquareGradiantColorMask,
-    "HorizontalGradiantColorMask": HorizontalGradiantColorMask,
-    "VerticalGradiantColorMask": VerticalGradiantColorMask,
 }
 correction_choices = {
     "l": qrcode.constants.ERROR_CORRECT_L,
@@ -69,17 +56,6 @@ class CodeConfigurationForm(FlaskForm):
             ("VerticalBarsDrawer", "Barres verticales"),
         ],
         default="SquareModuleDrawer",
-    )
-    color = SelectField(
-        label="Couleur",
-        choices=[
-            ("SolidFillColorMask", "Plein"),
-            ("RadialGradiantColorMask", "Gardient radial"),
-            ("SquareGradiantColorMask", "Gardient carré"),
-            ("HorizontalGradiantColorMask", "Gardient horizontal"),
-            ("VerticalGradiantColorMask", "Gardient vertical"),
-        ],
-        default="SolidFillColorMask",
     )
     correction = SelectField(
         label="Correction d'erreur",
@@ -117,7 +93,6 @@ def create_app():
             code_size = int(form.size.data)
 
             style_cls = style_choices[form.style.data]
-            color_cls = color_choices[form.color.data]
             correction = correction_choices[form.correction.data]
             back_color = color_str_to_tuple(form.back_color.data)
             fill_color = color_str_to_tuple(form.fill_color.data)
@@ -135,7 +110,7 @@ def create_app():
             img = qr.make_image(
                 image_factory=StyledPilImage,
                 module_drawer=style_cls(),
-                color_mask=color_cls(back_color=back_color, front_color=fill_color),
+                color_mask=SolidFillColorMask(back_color=back_color, front_color=fill_color),
             )
             fp = io.BytesIO()
             format = Image.registered_extensions()[".png"]
