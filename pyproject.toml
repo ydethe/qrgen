@@ -15,7 +15,7 @@ authors = [
     { name = "Yann de Thé", email = "ydethe@gmail.com" },
 ]
 dependencies = [
-    "rich~=13.7.1",
+    "rich~=13.9",
     "qrcode[pil]~=7.4",
     "flask~=3.0",
     "waitress~=3.0",
