@@ -22,7 +22,6 @@ dependencies = [
     "Flask-WTF~=1.2",
     "flask-bootstrap~=3.3",
     "pillow~=10.4",
-    "logfire[flask]~=0.52",
     "pydantic-settings~=2.5",
 ]
 requires-python = ">=3.9,<3.13"
@@ -81,6 +80,7 @@ editable-backend = "editables"
 [tool.pdm.dev-dependencies]
 dev = [
     "coverage-badge>=1.1.0",
+    "black==22.3.0",
     "ipython~=7.23.1",
     "pre-commit",
     "snakeviz>=2.1.2",

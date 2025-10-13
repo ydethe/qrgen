@@ -25,7 +25,6 @@ To run tests, just run:
 import logging
 
 from rich.logging import RichHandler
-import logfire
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -33,16 +32,12 @@ class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8", extra="allow")
 
     secret_key: str
-    logfire_token: str
     loglevel: str
 
 
 settings = Settings()
 
-logfire.configure(token=settings.logfire_token)
-
 # création de l'objet logger qui va nous servir à écrire dans les logs
 logger = logging.getLogger("fireset_logger")
-logger.addHandler(logfire.LogfireLoggingHandler())
 logger.addHandler(RichHandler(rich_tracebacks=False))
 logger.setLevel(settings.loglevel.upper())

@@ -1,7 +1,6 @@
 import io
 import typing as T
 
-import logfire
 from PIL import Image
 from flask import render_template, Flask, send_file
 from flask_bootstrap import Bootstrap
@@ -79,7 +78,6 @@ def create_app():
     # create and configure the app
     app = Flask(__name__, instance_relative_config=True)
     Bootstrap(app)
-    logfire.instrument_flask(app)
     app.config.from_mapping(
         SECRET_KEY=settings.secret_key,
     )
