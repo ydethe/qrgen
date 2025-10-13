@@ -49,8 +49,7 @@ addopts = [
     "--junitxml=htmldoc/junit.xml",
     "--cov-config=tests/coverage.conf",
     "--cov=qrgen",
-    "--doctest-modules",
-
+    "--doctest-modules"
 ]
 testpaths = [
     "tests/",
@@ -66,14 +65,11 @@ add = ["--save-compatible"]
 
 excludes = [
     ".gitignore",
-    "pdm_build.py",
     "tests",
     "examples",
     "build",
     "dev",
-    "dist",
-    "mockup",
-    "ksy"
+    "dist"
 ]
 editable-backend = "editables"
 

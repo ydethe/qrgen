@@ -74,6 +74,33 @@ def color_str_to_tuple(col: str) -> T.Tuple[int]:
     return tuple(col_t)
 
 
+def generate_qrcode(
+    code_size: int,
+    correction: str,
+    code_data: str,
+    back_color: T.Tuple[int],
+    fill_color: T.Tuple[int],
+    style: str,
+):
+    style_cls = style_choices[style]
+    correction_int = correction_choices[correction]
+
+    qr = qrcode.QRCode(
+        version=code_size,
+        error_correction=correction_int,
+        box_size=10,
+        border=4,
+    )
+    qr.add_data(code_data)
+    qr.make(fit=False)
+    img = qr.make_image(
+        image_factory=StyledPilImage,
+        module_drawer=style_cls(),
+        color_mask=SolidFillColorMask(back_color=back_color, front_color=fill_color),
+    )
+    return img
+
+
 def create_app():
     # create and configure the app
     app = Flask(__name__, instance_relative_config=True)
@@ -90,25 +117,13 @@ def create_app():
             code_data = form.url.data
             code_size = int(form.size.data)
 
-            style_cls = style_choices[form.style.data]
-            correction = correction_choices[form.correction.data]
             back_color = color_str_to_tuple(form.back_color.data)
             fill_color = color_str_to_tuple(form.fill_color.data)
 
             logger.info(f"Generating code for '{code_data}")
 
-            qr = qrcode.QRCode(
-                version=code_size,
-                error_correction=correction,
-                box_size=10,
-                border=4,
-            )
-            qr.add_data(code_data)
-            qr.make(fit=False)
-            img = qr.make_image(
-                image_factory=StyledPilImage,
-                module_drawer=style_cls(),
-                color_mask=SolidFillColorMask(back_color=back_color, front_color=fill_color),
+            img = generate_qrcode(
+                code_size, form.correction.data, code_data, back_color, fill_color, form.style.data
             )
             fp = io.BytesIO()
             format = Image.registered_extensions()[".png"]

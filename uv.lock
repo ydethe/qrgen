@@ -1239,7 +1239,7 @@ pil = [
 
 [[package]]
 name = "qrgen"
-version = "0.9.dev2+gf2637b6.d20251013"
+version = "0.9+d20251013"
 source = { editable = "." }
 dependencies = [
     { name = "editables" },
