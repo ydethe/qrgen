@@ -77,7 +77,7 @@ excludes = [
 ]
 editable-backend = "editables"
 
-[tool.pdm.dev-dependencies]
+[dependency-groups]
 dev = [
     "coverage-badge>=1.1.0",
     "black==22.3.0",
