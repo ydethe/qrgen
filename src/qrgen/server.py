@@ -75,12 +75,12 @@ def color_str_to_tuple(col: str) -> T.Tuple[int]:
 
 
 def generate_qrcode(
-    code_size: int,
-    correction: str,
     code_data: str,
-    back_color: T.Tuple[int],
-    fill_color: T.Tuple[int],
-    style: str,
+    code_size: int = 10,
+    correction: str = "m",
+    back_color: T.Tuple[int] = (255, 255, 255),
+    fill_color: T.Tuple[int] = (0, 0, 0),
+    style: str = "SquareModuleDrawer",
 ):
     style_cls = style_choices[style]
     correction_int = correction_choices[correction]
@@ -123,7 +123,7 @@ def create_app():
             logger.info(f"Generating code for '{code_data}")
 
             img = generate_qrcode(
-                code_size, form.correction.data, code_data, back_color, fill_color, form.style.data
+                code_data, code_size, form.correction.data, back_color, fill_color, form.style.data
             )
             fp = io.BytesIO()
             format = Image.registered_extensions()[".png"]
