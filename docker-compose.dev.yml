@@ -3,7 +3,6 @@ services:
     build: .
     environment:
       - SECRET_KEY=$SECRET_KEY
-      - LOGFIRE_TOKEN=$LOGFIRE_TOKEN
       - LOGLEVEL=$LOGLEVEL
     labels:
       - "traefik.enable=true"
