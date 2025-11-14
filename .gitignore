@@ -2,7 +2,7 @@ htmldoc
 test_results.xml
 .pdm-python
 *.png
-
+requirements.txt
 *.db
 __pypackages__
 *.parq
